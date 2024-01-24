@@ -1,16 +1,17 @@
 from pathlib import Path
+from email.header import decode_header
+from tkinter import Listbox, scrolledtext, filedialog, messagebox
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
+from requests.auth import HTTPBasicAuth
 import os
 import dotenv
 import tkinter as tk
 import win32com.client
-from email.header import decode_header
-from tkinter import Listbox, scrolledtext, filedialog, messagebox
 import re
 import smtplib
-from email.mime.text import MIMEText
-from email.mime.multipart import MIMEMultipart
 import requests
-from requests.auth import HTTPBasicAuth
+
 
 
 class EmailProcessor:
