@@ -1,0 +1,165 @@
+import os
+import customtkinter as ctk
+import tkinter as tk
+from tkinter import ttk
+from urllib.parse import quote
+import requests
+import azure_test as AzureTest
+
+ctk.set_appearance_mode("dark")
+ctk.set_default_color_theme("blue")
+app = ctk.CTk()
+app.geometry("350x300")
+app.title("Azure Email Fetcher")
+
+
+class AzureLogin:
+    def __init__(self, master):
+        self.master = master
+        self.access_token = AzureTest.get_saved_access_token() or None
+        self.selected_folders = set()
+
+        self.loginbutton = ctk.CTkButton(
+            master=app, text="Login", command=self.handle_login
+        )
+        self.loginbutton.place(relx=0.5, rely=0.5, anchor="ne")
+
+        self.getmailsbutton = ctk.CTkButton(
+            master=app, text="Get Emails", command=self.handle_getmails
+        )
+        self.getmailsbutton.place(relx=0.5, rely=0.7, anchor="ne")
+
+        self.isloggedin_label = ctk.CTkLabel(
+            master=app, text="Logged in" if self.access_token else "Not logged in",
+            text_color="green" if self.access_token else "red"
+        )
+        self.isloggedin_label.place(relx=0.9, rely=0.6, anchor="ne")
+
+        self.treeview = ttk.Treeview(master, height=7, show="tree")
+        self.treeview.grid(padx=10)
+        self.treeview.bind("<Double-1>", self.on_double_click)
+
+        if self.access_token:
+            self.populate_tree()
+
+    def populate_tree(self, parent="", folder_id="me/mailFolders"):
+        print("Fetching folders...")
+        base_url = "https://graph.microsoft.com/v1.0/"
+        headers = {"Authorization": f"Bearer {self.access_token}"}
+        folders_endpoint = base_url + folder_id
+        if folder_id != "me/mailFolders":
+            folders_endpoint = f"{base_url}me/mailFolders/{folder_id}/childFolders"
+
+        folders_response = requests.get(folders_endpoint, headers=headers)
+
+        if folders_response.status_code != 200:
+            print(f"Error fetching folders. Status code: {folders_response.status_code}")
+            print(f"Error message: {folders_response.text}")
+            return
+
+        folders = folders_response.json().get("value", [])
+
+        for folder in folders:
+            folder_id = folder.get("id", "")
+            folder_name = folder.get("displayName", "")
+            item_id = self.treeview.insert(
+                parent, "end", text=folder_name, values=(folder_name), tags=(folder_id)
+            )
+            self.treeview.item(item_id, open=False)
+
+        print("Folders fetched successfully.")
+
+    def handle_login(self):
+        self.isloggedin_label.configure(text="Logging in...", text_color="orange")
+        self.access_token = AzureTest.get_access_token()
+        self.isloggedin_label.configure(text="Logged in", text_color="green")
+
+    def handle_getmails(self):
+        self.selected_folders.clear()
+        selected_items = self.treeview.selection()
+        for item in selected_items:
+            folder_name = self.treeview.item(item, "text")
+            self.selected_folders.add(folder_name)
+        print("Selected Folders:", self.selected_folders)
+
+        if self.access_token and self.selected_folders:
+            base_url = "https://graph.microsoft.com/v1.0/"
+            headers = {
+                "Authorization": f"Bearer {self.access_token}",
+                "Prefer": "outlook.body-content-type=\"text\""
+            }
+
+            for folder_name in self.selected_folders:
+                folder_id = self.get_folder_id_by_name(folder_name, base_url, headers, path_components=[folder_name])
+                if folder_id:
+                    messages_endpoint = f"{base_url}me/mailFolders/{folder_id}/messages"
+                    messages_response = requests.get(messages_endpoint, headers=headers)
+
+                    if messages_response.status_code == 200:
+                        messages = messages_response.json().get("value", [])
+                        folder_path = os.path.join(os.getcwd(), folder_name)
+                        os.makedirs(folder_path, exist_ok=True)
+
+                        for message in messages:
+                            message_id = message.get("id", "")
+                            message_subject = message.get("subject", "NoSubject")
+                            sanitized_subject = "".join(c if c.isalnum() or c in "._-" else "_" for c in message_subject)
+                            message_body = message.get("body", {}).get("content", "")
+                            message_filename = f"{sanitized_subject}.txt"
+                            message_filepath = os.path.join(folder_path, message_filename)
+
+                            with open(message_filepath, "w", encoding="utf-8") as file:
+                                file.write(message_body)
+
+                        print(f"Messages saved in folder '{folder_name}'")
+                    else:
+                        print(f"Error fetching messages in folder '{folder_name}'. "
+                            f"Status code: {messages_response.status_code}")
+                        print(f"Error message: {messages_response.text}")
+
+    def on_double_click(self, event):
+        item = self.treeview.selection()[0]
+        print("You clicked on", item)
+        folder_name = self.treeview.item(item, "text")
+        folder_id = self.treeview.item(item, "tags")[0] if self.treeview.item(item, "tags") else None
+        if not self.treeview.item(item, "open"):
+            self.populate_tree(item, folder_id)
+
+    def get_folder_id_by_name(self, target_folder_name, base_url, headers, parent_folder_id="me/mailFolders", path_components=None):
+        if path_components is None:
+            path_components = []
+
+        if parent_folder_id == "me/mailFolders":
+            folders_endpoint = f"{base_url}{parent_folder_id}"
+        else:
+            folders_endpoint = f"{base_url}{parent_folder_id}/childFolders"
+
+        folders_response = requests.get(folders_endpoint, headers=headers)
+
+        if folders_response.status_code == 200:
+            folders = folders_response.json().get("value", [])
+
+            for folder in folders:
+                folder_id = folder.get("id", "")
+                folder_display_name = folder.get("displayName", "")
+                current_path = path_components + [folder_display_name]
+
+                if folder_display_name == target_folder_name:
+                    return folder_id
+
+                subfolder_id = self.get_folder_id_by_name(target_folder_name, base_url, headers, folder_id, current_path)
+                if subfolder_id:
+                    return subfolder_id
+
+            print(f"Folder '{target_folder_name}' not found in path {'/'.join(current_path)}")
+            return None
+        else:
+            print(f"Error fetching folders. Status code: {folders_response.status_code}")
+            print(f"Error message: {folders_response.text}")
+            return None
+
+
+
+
+azure_login = AzureLogin(app)
+app.mainloop()
