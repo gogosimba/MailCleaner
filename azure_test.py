@@ -1,7 +1,6 @@
 import os
 import pyperclip
 import webbrowser
-import requests
 import tkinter as tk
 from tkinter import messagebox, simpledialog
 from msal import PublicClientApplication

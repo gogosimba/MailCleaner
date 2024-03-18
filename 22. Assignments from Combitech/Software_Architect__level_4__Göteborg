@@ -1,0 +1,34 @@
+
+
+Agile Release Train High Integrity Nodes (ARTHI) is an integral part of Core System Platform which offers safety critical platform for functions to be deployed upon. It is an Autosar Classic-based platform using Infineon Aurix TriCore processors. Adjacent to HI teams, high-performance (HP) teams exist, and they will be referred to as HPx. The tools JIRA and Confluence are corner stones in planning and knowledge sharing. The ambition is Continuous Integration and an official release every 2nd week. Several High Integrity (HI) teams are jointly responsible for creation and deployment of a platform for high-ASIL components (up to ASIL-D) and safety-critical processes. HI is split into a platform development- and an integration-focused organization. It is developed with the ambition to reuse the platform software across 3 system-on-chips located within the Core System, HI-A, HI-B and HI-C, as well as across the generations of the Core System.
+
+What you will do
+As a software architect within HI you will be part of a team that is responsible for the overall architecture of the nodes’ software and its functionalities. This means to take part of analyzing incoming requirements, plan for the impact on the software and tools and to review the implementation designs of various development teams. It is also expected that this team is able to step In and handle various quality issues that are more complex and require high attention. To manage this successfully you need to be working cross-functionally with your team-colleagues and other teams around the company.
+
+Who are you?
+We want to work with you who have a keen interest in modern computing technologies and want to work in an evolving industry. You like solving problems together with others. You are communicative, collaborative, and comfortable with working within a challenging environment. You enjoy being part of a team where you take own initiatives and take pride in your own and the team’s deliveries.
+
+You and your skills
+Mandatory requirements
+• Very solid experience of embedded software development
+• Great understanding of Autosar Basic Software configuration and tools
+• Good understanding of application development on an Autosar platform
+• Have a clear idea of what quality managed software means
+• Great C programming skills
+• Fluent in spoken and written English
+• Great knowledge within fault tracing, application development, basic software configuration and HI tool chain
+• Skilled with the use of Lauterbach/Trace32
+
+Good to have
+• You are an excellent networker and surely cross-functional with great communication skills
+• You are result-oriented, with a high level of engagement and a strong enthusiasm
+• You have been working successfully in an agile or lean environment
+• Scripting knowledge, eg Python, bash and make.
+• Your “think-outside-of-the-box-attitude” is valued by your co-workers
+• You have fun teaching and explaining complex correlations
+
+Uppdragsinform​ation​
+Uppdragslängd: 2024-03-04 to 2024-12-31
+
+Placeringsort: Göteborg
+

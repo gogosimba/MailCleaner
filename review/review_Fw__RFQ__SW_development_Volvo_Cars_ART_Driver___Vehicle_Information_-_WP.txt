@@ -1,0 +1,89 @@
+
+________________________________
+From: Levigo VCC <vccuppdrag@levigo.se>
+Sent: Thursday, January 4, 2024 1:24 PM
+To: Uppdrag <uppdrag@ultragroup.se>
+Subject: RFQ: SW development Volvo Cars ART Driver & Vehicle Information - WP
+
+RFQ: SW development Volvo Cars ART Driver & Vehicle Information - WP
+
+Start: 2024 w03
+End: 2024 w52 – Possible prolongation of assignment communicated.
+Last day of quotation: 2024-01-11
+
+Please contact jimmie.ivarsson@perido.se if you have any questions.
+
+Assignment description
+We within ART Driver & Vehicle Information are responsible for the software development of the
+next generation infotainment system using Google´s Android automotive OS.
+
+We are now looking for a partner that can supply us with a self-driven Agile team, within Android
+AOSP software development, that can help us develop and maintain our product.
+
+The main content of this bought assignment is SW development and maintenance for the product
+evolution of the infotainment system.
+
+The overall objective is to secure the One-HMI software delivery. Ensure that our software is
+maintainable long-term, supports various screen configurations, and is hardware independent. Also
+ensuring parity for all existing feature functionalities and quality of the software.
+
+The competence profile needed is Android AOSP knowledge along with Java/C++/Python as well as
+Linux experience. Competence within test automation and SW verificationare is also needed, see
+details in Roles below.
+
+Location
+The work should be performed at Volvo Cars office in Lindholmen.
+Chosen supplier should be connected to Volvo Cars and have all necessary IT-solutions (Tools,
+system, accesses) that is needed to do the job in a good and effective way.
+
+Way of working
+All work should be carried out according to Volvo Cars defined working processes VCAF/VPDS using
+VCC SW development practice and VCC SW repositories, build systems and VCC CI Chain.
+Supplied teams will follow the same cadence regarding sprints, PI:s and deliveries as other teams
+within the ART Driver & Vehicle Information.
+All involved personnel are expected to have the necessary knowledge about the mentioned
+processes and practices.
+
+Extent/content
+The supplier is expected to provide a team of 6-7 members with cross functional competence as
+specified in section below in order to deliver expected outcome of the total assignment.
+Deliveries such as Gates, Reports, Documents, specification, codes should always be quality secured
+to make sure that routines and working methods is followed.
+Expected outcome of this assignment is to deliver a scalable and maintainable One-HMI solution as
+well as document One-HMI guidelines and principles. As well as ensuring parity for all existing
+feature functionalities and quality of the software.
+The team supplied by the supplier will define and plan stories for this assignment, owning their own
+backlog.
+VCC Product Owner will define and prioritize objectives which will entail all One-HMI features and
+possible development in all Infotainment related areas, ref 3.1.1 Product Areas. Time plan and
+deliveries shall continuously be approved by VCC Product Owner.
+Order of each assignment should be done by EM/PM with attached order form (se attach 3.10).
+Supplier then fill in the form and send it back to Volvo Cars. Volvo Cars the accept resources and
+frame (Hours) by returning the form as an confirmed order for the job to start.
+
+Competence profiles and roles
+Software developer:
+We are looking for someone with a M.Sc in Software Engineering or at least 5 years of relevant
+experience. You have hands-on experience of Android app and native development (Java/Kotlin,
+C++) along with experience in AOSP and the AOSP build system.
+You are familiar with modern app architectural patterns (MVP, MVVM, clean architecture) as well as
+having good knowledge of Android testing frameworks (Junit, Espresso, Mockito) and Python
+scripting. You must also have expertise in version control tools such as Git.
+Furthermore, it is meritorious if you have previous experience in Automotive infotainment projects.
+
+Software tester:
+We´re looking for someone with a Master´s degree in Software Engineering or equivalent
+experience. You must have previous experience in quality assurance of complex embedded systems,
+automotive infotainment systems and familiarity with scripting languages such as Python or Shell.
+Familiarity in test automation frameworks like Pytest and Robot will be advantageous.
+Knowledge in tools such as CANoe and CANalyzer are added advantage. It is also required that you
+have fluency in English, both written and spoken, as well as a valid driver´s license (B).
+
+Furthermore, knowledge of Volvo systems like Elektra, CarCom, or SystemWeaver will also be
+considered a plus. Finally, experience in test automation, programming, or model-based
+development/testing is also meritorious.
+
+
+________________________________
+Unsubscribe / Change Profile<https://ymlpcdn3.net/ugmwqbemgsgesubhgjmuhjggewquj>
+

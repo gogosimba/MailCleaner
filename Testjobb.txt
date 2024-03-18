@@ -1,0 +1,36 @@
+<style>
+<body>
+background-color:black
+color:red
+</body>
+       .blink {
+        width: 220px;
+        height: 50px;
+        background-color: #342ab8;
+        padding: 10px;
+        text-align: center;
+        line-height: 50px;
+      }
+      span {
+        font-size: 26px;
+        font-family: cursive;
+        color: red;
+        animation: blink 2s linear infinite;
+      }
+      @keyframes blink {
+        0% {
+          opacity: 0;
+        }
+        50% {
+          opacity: .5;
+        }
+        100% {
+          opacity: 1;
+        }
+      }
+</style>
+
+<div class="blink">
+<span>CREATINETESTER NEEDED!!! WE NEED A PERSON TO TRY OUR NEW EXCITING CREATINEFLAVOR "POWERBEEF" DO YOU WISH TO BE A SIGMA CHAD TOO? JOIN US!!!</span>
+</div>
+

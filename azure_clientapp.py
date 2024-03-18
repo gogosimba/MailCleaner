@@ -4,11 +4,10 @@ from dotenv import load_dotenv
 
 # Azure AD application details
 load_dotenv()
-client_id = os.environ.get("AZURE_CLIENT_ID")
+client_id = os.environ.get("AZURE_APPLICATION_ID")
 client_secret = os.environ.get("AZURE_CLIENT_SECRET")
 tenant_id = os.environ.get("AZURE_TENANT_ID")
 graph_url = "https://graph.microsoft.com/v1.0/"
-
 
 def get_access_token():
     # Acquire token using client credentials flow
@@ -22,9 +21,7 @@ def get_access_token():
 
     token_response = requests.post(token_endpoint, data=token_data)
     access_token = token_response.json().get("access_token")
-    print(access_token)
     return access_token
-
 
 def get_user_inbox(access_token):
     # Endpoint to get user's inbox
@@ -47,7 +44,6 @@ def get_user_inbox(access_token):
     else:
         print(f"Error fetching inbox. Status code: {response.status_code}")
         print(f"Error message: {response.text}")
-
 
 # Replace with the user's email address
 user_email = "LIA-ultragroup@outlook.com"
